@@ -17,7 +17,7 @@ import { AddIcon } from '@chakra-ui/icons';
 
 type Objet = {
 	Id: number;
-	Names: string;
+	Name: string;
 	Price: number;
 	Description: string;
 	Userid: number;
@@ -27,35 +27,35 @@ const Home = (): JSX.Element => {
 	const [objects, setObjects] = useState<Objet[]>([
 		{
 			Id: 123,
-			Names: 'Lave-vaiselle',
+			Name: 'Lave-vaiselle',
 			Price: 230,
 			Description: 'Bon état, de seconde main, fonctionnel',
 			Userid: 236,
 		},
 		{
 			Id: 456,
-			Names: 'méthamphétamine',
+			Name: 'méthamphétamine',
 			Price: 1245,
 			Description: 'Illégal et dangereux',
 			Userid: 236,
 		},
 		{
 			Id: 457,
-			Names: 'pistolet airsoft',
+			Name: 'pistolet airsoft',
 			Price: 65,
 			Description: 'Attention à ne pas perdre les billes. Il ne faut pas tirer sur les gens',
 			Userid: 150,
 		},
 		{
 			Id: 457,
-			Names: 'pistolet airsoft',
+			Name: 'pistolet airsoft',
 			Price: 65,
 			Description: 'Attention à ne pas perdre les billes. Il ne faut pas tirer sur les gens',
 			Userid: 150,
 		},
 		{
 			Id: 458,
-			Names: 'Noir',
+			Name: 'Noir',
 			Price: 30,
 			Description: 'Super pot de peiture, première main, toute surface.',
 			Userid: 150,
@@ -65,7 +65,7 @@ const Home = (): JSX.Element => {
 	const getObjects = () => {
 		console.log('check');
 		axios
-			.get<Objet[]>('localhost:8080')
+			.get<Objet[]>('http://localhost:8080')
 			.then((data) => {
 				console.log('salut');
 				console.log(data);
@@ -166,7 +166,7 @@ const Home = (): JSX.Element => {
 											<Flex alignItems="center" flexDirection="column">
 												<Text fontSize="20px" fontWeight="bold">
 													{' '}
-													{object.Names} à vendre
+													{object.Name} à vendre
 												</Text>
 												<Text fontSize="15px"> {object.Description}</Text>
 											</Flex>
@@ -194,7 +194,7 @@ const Home = (): JSX.Element => {
 				<ModalContent width="700px" maxWidth="700px" height="600px" maxHeight="600px">
 					<ModalHeader>
 						<Box>
-							<Text fontSize="50px">{articleSelected.Names}</Text>
+							<Text fontSize="50px">{articleSelected.Name}</Text>
 						</Box>
 						<Box>
 							<Text fontSize="30px">{articleSelected.Price}€</Text>

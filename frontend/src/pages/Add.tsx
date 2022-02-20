@@ -1,8 +1,39 @@
 import { Text, Flex, Box, Divider, Image } from '@chakra-ui/react';
 import { Input } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const Add = (): JSX.Element => (
+const Add = (): JSX.Element => {
+	const [name, setName] = useState('');
+	const [price, setPrice] = useState('');
+	const [description, setDescription] = useState('');
+
+	const getName = ( target:any ) => {
+		setName(target.value);
+	};
+	const getPrice = (target:any ) => {
+		setPrice(target.value);
+	};
+	const getDescription = (target:any ) => {
+		setPrice(target.value);
+	};
+
+	const handleClick = () => {
+		const Objet = {
+			"Id": 123,
+			"Names": name,
+			"Price": price,
+			"Description": description,
+			"Userid": 150
+		};
+		axios
+			.post('http://localhost:8080/add-obj', Objet)
+			.catch((error) => {
+				console.log(error);
+			});
+	};
+	return (
 	<>
 		<Box height="61em" backgroundColor="#fafafa">
 			<Flex flexDirection="column" justifyContent="right">
@@ -29,6 +60,7 @@ const Add = (): JSX.Element => (
 										fontWeight="normal"
 										color="#949494"
 										type="text"
+										onChange={getName}
 									/>
 								</Box>
 								<Box mt="20px">
@@ -38,6 +70,7 @@ const Add = (): JSX.Element => (
 										fontWeight="normal"
 										color="#949494"
 										type="int"
+										onChange={getPrice}
 									/>
 								</Box>
 								<Box mt="20px">
@@ -48,12 +81,13 @@ const Add = (): JSX.Element => (
 										color="#949494"
 										type="text"
 										height="150px"
+										onChange={getDescription}
 									/>
 								</Box>
 							</label>
 						</Flex>
 						<Box width="100px" ml="48%" mt="10px">
-							<input type="submit" value="Créer" />
+							<input type="submit" value="Créer" onClick={handleClick}/>
 						</Box>
 				</form>
 				<Box
@@ -89,5 +123,6 @@ const Add = (): JSX.Element => (
 		</Box>
 	</>
 );
+};
 
 export default Add;
