@@ -1,0 +1,2 @@
+#!/bin/sh
+sudo docker rm my_database
