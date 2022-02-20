@@ -16,7 +16,7 @@ const Add = (): JSX.Element => {
 			"Description": description,
 		};
 		axios
-			.post('http://localhost:8080/add-obj', Objet)
+			.post('http://localhost:8080/add-obj', Objet, { withCredentials: true })
 			.catch((error) => {
 				console.log(error);
 			});

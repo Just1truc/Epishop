@@ -11,7 +11,7 @@ const Signup = (): JSX.Element => {
 	const [password, setPassword] = useState("");
 
 	const handleClick = () => {
-		axios.post('http://localhost:8080/profile/signup', {Username : username, Password : password}).catch((error) => {
+		axios.post('http://localhost:8080/profile/signup', {Username : username, Password : password}, { withCredentials: true }).catch((error) => {
 			console.log(error);
 		});
 	};

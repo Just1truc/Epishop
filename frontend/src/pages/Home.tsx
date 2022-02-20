@@ -65,7 +65,7 @@ const Home = (): JSX.Element => {
 	const getObjects = () => {
 		console.log('check');
 		axios
-			.get<Objet[]>('http://localhost:8080')
+			.get<Objet[]>('http://localhost:8080', { withCredentials: true })
 			.then((data) => {
 				console.log('salut');
 				console.log(data);
@@ -76,7 +76,7 @@ const Home = (): JSX.Element => {
 				console.log(error);
 			});
 		axios
-			.get<string>('http://localhost:8080/cookie')
+			.get<string>('http://localhost:8080/cookie', { withCredentials: true })
 			.catch((error) => {
 				console.log('check2');
 				console.log(error);

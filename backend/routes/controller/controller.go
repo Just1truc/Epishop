@@ -49,7 +49,7 @@ func GetObjects(c *gin.Context) {
 func Cookie(c *gin.Context) {
 	value, err := c.Cookie("connected")
 	if err != nil {
-		c.String(http.StatusNotFound, "Not Connected")
+		c.String(http.StatusNoContent, "Not Connected")
 	} else {
 		c.String(http.StatusFound, value)
 	}
@@ -90,7 +90,7 @@ func SinUp(c *gin.Context) {
 		if err != nil {
 			panic(err)
 		} else {
-			c.SetCookie("connected", strconv.Itoa(id.Id), 3600, "/", "localhost", false, true)
+			c.SetCookie("connected", strconv.Itoa(id.Id), 3600, "/", "http://localhost:8080", false, true)
 			c.Status(http.StatusCreated)
 		}
 	}
@@ -129,7 +129,7 @@ func SinIn(c *gin.Context) {
 				panic(err)
 			}
 		}
-		c.SetCookie("connected", strconv.Itoa(id.Id), 3600, "/", "localhost", false, true)
+		c.SetCookie("connected", strconv.Itoa(id.Id), 3600, "/", "http://localhost:8080", false, false)
 		c.Status(statu)
 	}
 }
