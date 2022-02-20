@@ -5,27 +5,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Add = (): JSX.Element => {
-	const [name, setName] = useState('');
-	const [price, setPrice] = useState('');
-	const [description, setDescription] = useState('');
-
-	const getName = ( target:any ) => {
-		setName(target.value);
-	};
-	const getPrice = (target:any ) => {
-		setPrice(target.value);
-	};
-	const getDescription = (target:any ) => {
-		setPrice(target.value);
-	};
+	const [name, setName] = useState("");
+	const [price, setPrice] = useState("");
+	const [description, setDescription] = useState("");
 
 	const handleClick = () => {
 		const Objet = {
-			"Id": 123,
-			"Names": name,
-			"Price": price,
+			"Name": name,
+			"Price": parseInt(price, 10),
 			"Description": description,
-			"Userid": 150
 		};
 		axios
 			.post('http://localhost:8080/add-obj', Objet)
@@ -60,7 +48,8 @@ const Add = (): JSX.Element => {
 										fontWeight="normal"
 										color="#949494"
 										type="text"
-										onChange={getName}
+										onChange={event => setName(event.target.value)}
+										value={name}
 									/>
 								</Box>
 								<Box mt="20px">
@@ -70,7 +59,8 @@ const Add = (): JSX.Element => {
 										fontWeight="normal"
 										color="#949494"
 										type="int"
-										onChange={getPrice}
+										onChange={event => setPrice(event.target.value)}
+										value={price}
 									/>
 								</Box>
 								<Box mt="20px">
@@ -81,13 +71,14 @@ const Add = (): JSX.Element => {
 										color="#949494"
 										type="text"
 										height="150px"
-										onChange={getDescription}
+										onChange={event => setDescription(event.target.value)}
+										value={description}
 									/>
 								</Box>
 							</label>
 						</Flex>
 						<Box width="100px" ml="48%" mt="10px">
-							<input type="submit" value="Créer" onClick={handleClick}/>
+							<input type="button" value="Créer" onClick={handleClick}/>
 						</Box>
 				</form>
 				<Box

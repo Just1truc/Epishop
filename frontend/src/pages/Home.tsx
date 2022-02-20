@@ -75,6 +75,12 @@ const Home = (): JSX.Element => {
 				console.log('check2');
 				console.log(error);
 			});
+		axios
+			.get<string>('http://localhost:8080/cookie')
+			.catch((error) => {
+				console.log('check2');
+				console.log(error);
+			});
 	};
 
 	const { isOpen, onOpen, onClose } = useDisclosure();

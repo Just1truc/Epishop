@@ -3,23 +3,15 @@ import { Input } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { format } from 'node:path/win32';
+import { stringify } from 'node:querystring';
 
 const Signup = (): JSX.Element => {
-	const [username, setUsername] = useState('');
-	const [password, setPassword] = useState('');
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
 
-	const getUsername = (target: any) => {
-		setUsername(target.value);
-	};
-	const getPassword = (target: any) => {
-		setPassword(target.value);
-	};
 	const handleClick = () => {
-		const Objet = {
-			"Username": username,
-			"Passwords": password
-		};
-		axios.post('http://localhost:8080/profile/signup', Objet).catch((error) => {
+		axios.post('http://localhost:8080/profile/signup', {Username : username, Password : password}).catch((error) => {
 			console.log(error);
 		});
 	};
@@ -51,7 +43,8 @@ const Signup = (): JSX.Element => {
 										fontWeight="normal"
 										color="#949494"
 										type="string"
-										onChange={getUsername}
+										onChange={event => setUsername(event.target.value)}
+										value={username}
 									/>
 								</Box>
 								<Box mt="40px">
@@ -69,13 +62,14 @@ const Signup = (): JSX.Element => {
 										backgroundColor="#efefef"
 										fontWeight="normal"
 										color="#949494"
-										onChange={getPassword}
+										onChange={event => setPassword(event.target.value)}
 										type="password"
+										value={password}
 									/>
 								</Box>
 							</label>
 							<Box mt="60px" ml="44%">
-								<Button type="submit" value="Sign up" onClick={handleClick}>
+								<Button type="button" value="Sign up" onClick={handleClick}>
 									Submit
 								</Button>
 							</Box>
